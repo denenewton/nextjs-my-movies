@@ -1,0 +1,11 @@
+form {
+  width: 100%;
+}
+
+footer {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

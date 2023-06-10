@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { ReactNode } from "react";
-import { Button, Container, Grid, GridItem, HStack, Show, Text } from "@chakra-ui/react";
+import { Button, Container, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import Navigation from "./Navigation";
 import { useRouter } from "next/router";
 
@@ -8,7 +8,6 @@ interface Props {
   children: ReactNode;
 }
 
-const name = "Daniel dos Santos Araujo";
 export const siteTitle = "Denenewton Movies";
 const genres = ['Science fiction','Adventure','Drama' ,'Romence' , 'Action', 'Thriller','Comedy', 'Fantasy']
 
@@ -50,7 +49,7 @@ export default function Layout({ children }: Props) {
        {pathname === '/' && ( <Show above="lg">
           <GridItem area="aside"  py='1.5rem'>
             <aside>{genres.map(genre => (
-              <HStack marginBottom={4}>
+              <HStack key={genre} marginBottom={4}>
               <Button
               whiteSpace="normal"
               textAlign="left"

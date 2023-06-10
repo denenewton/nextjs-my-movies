@@ -3,7 +3,6 @@ import { Box, Image, Text, Link } from "@chakra-ui/react";
 
 const Details = ({ title }) => {
   const { movie } = useMovies(title);
-  console.log(movie);
 
   return (
     <>

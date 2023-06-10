@@ -15,10 +15,10 @@ import {
 
 export const upLoadImage = (
   data: any,
- // setImageURL: (arg0: string) => void,
+  setImageURL,
   setProgressImg: (arg0: number) => void
 ) => {
-  const file = data.file;
+  const file = data.file[0];
   console.log(file);
   console.log(data)
   const storageRef = ref(storage, `image/${file?.name}`);
@@ -36,7 +36,7 @@ export const upLoadImage = (
     },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL: any) => {
-        //setImageURL(downloadURL);
+        setImageURL(downloadURL);
         const movie = {
           title: data.title,
           genre: data.genre,
@@ -78,6 +78,8 @@ export const getMoviesList = async () => {
 };
 
 export const getMovieDetails = async (title: any) => {
+  console.log(title);
+  
   try {
     const docRef = doc(db, "movies", title?.toLowerCase());
     const docSnap = await getDoc(docRef);

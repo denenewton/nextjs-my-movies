@@ -9,13 +9,14 @@ interface Props {
 }
 
 const InputRegister = ({ type, name, register, lable, errors }: Props) => {
+  
   return (
     <div>
       <FormLabel marginBottom={1} id={name}>
         {lable}
       </FormLabel>
       <Input
-        {...(register(name), { required: true, minLength: 3 })}
+        {...register(name , { required: true, minLength: 3 })}
         id={name}
         type={type}
         name={name}

@@ -13,7 +13,7 @@ const TextareRegister = ({ name, register, lable, errors }: Props) => {
         {lable}
       </FormLabel>
       <Textarea
-        {...(register(name), { required: true, minLength: 50 })}
+        {...register(name, { required: true, minLength: 50 })}
         id={name}
         name={name}
         marginBottom={3}

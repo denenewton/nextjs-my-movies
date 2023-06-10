@@ -6,7 +6,6 @@ import Head from "next/head";
 
 export default function Page() {
   const router = useRouter();
-  console.log(router.query.title);
 
   return (
     <Layout>

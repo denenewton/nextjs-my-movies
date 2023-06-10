@@ -11,7 +11,6 @@ const useMovies = (title: string | undefined) => {
       setMovie(m);
     })();
   }, []);
-  //console.log(movie);
   return { movie };
 };
 

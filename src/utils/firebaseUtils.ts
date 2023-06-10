@@ -15,10 +15,12 @@ import {
 
 export const upLoadImage = (
   data: any,
-  setImageURL: (arg0: string) => void,
+ // setImageURL: (arg0: string) => void,
   setProgressImg: (arg0: number) => void
 ) => {
-  const file = data.file[0];
+  const file = data.file;
+  console.log(file);
+  console.log(data)
   const storageRef = ref(storage, `image/${file?.name}`);
   const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -34,7 +36,7 @@ export const upLoadImage = (
     },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL: any) => {
-        setImageURL(downloadURL);
+        //setImageURL(downloadURL);
         const movie = {
           title: data.title,
           genre: data.genre,

@@ -25,7 +25,9 @@ const RegisterMovies = ({ imageURL, setImageURL }: Props) => {
   const { errors } = formState;
 
   const onSubmit = (data: FieldValues | any) => {
-    if (data) upLoadImage(data, setImageURL, setProgressImg);
+    if (data) upLoadImage(data, setProgressImg);
+    console.log(data);
+    
     setProgressImg(0);
   };
 

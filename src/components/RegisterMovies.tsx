@@ -1,9 +1,10 @@
 import { FormControl, Button, Progress } from "@chakra-ui/react";
 import { upLoadImage } from "../utils/firebaseUtils";
 import { FieldValues, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import InputRegister from "./InputRegister";
 import TextareRegister from "./TextareRegister";
+import SearchContext from "../contexts/SearchContext";
 
 export interface Movie {
   title: string;
@@ -14,20 +15,16 @@ export interface Movie {
   url: string;
 }
 
-interface Props {
-  imageURL: string;
-  setImageURL: (arg: string) => void;
-}
 
-const RegisterMovies = ({ imageURL, setImageURL }: Props) => {
-  const [progressImg, setProgressImg] = useState(0);
+const RegisterMovies = () => {
   const { register, handleSubmit, formState } = useForm<Movie>();
+  const [progressImg, setProgressImg] = useState(0);
+  const {imageURL, setImageURL} = useContext(SearchContext)
   const { errors } = formState;
 
   const onSubmit = (data: FieldValues | any) => {
     if (data) upLoadImage(data,setImageURL, setProgressImg);
     console.log(data);
-    
     setProgressImg(0);
   };
 

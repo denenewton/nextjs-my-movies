@@ -17,7 +17,7 @@ const Details = ({ title }) => {
           </Box>
           <Box alignItems={"flex-start"}>
             <Link
-              href={movie["url-movie"].replace("'", "").replace("'", "")}
+              href={movie["url-movie"]?.replace("'", "")?.replace("'", "")}
               target="_blank"
               rel="noreferrer"
             >

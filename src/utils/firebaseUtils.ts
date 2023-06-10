@@ -13,14 +13,8 @@ import {
   where,
 } from "firebase/firestore";
 
-export const upLoadImage = (
-  data: any,
-  setImageURL,
-  setProgressImg: (arg0: number) => void
-) => {
-  const file = data.file[0];
-  console.log(file);
-  console.log(data)
+export const upLoadImage = (data:any,setImageURL:(arg:string)=> void, setProgressImg:(arg:number) => void) => {
+  const file = data?.file[0];
   const storageRef = ref(storage, `image/${file?.name}`);
   const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -79,7 +73,7 @@ export const getMoviesList = async () => {
 
 export const getMovieDetails = async (title: any) => {
   console.log(title);
-  
+
   try {
     const docRef = doc(db, "movies", title?.toLowerCase());
     const docSnap = await getDoc(docRef);
@@ -91,21 +85,19 @@ export const getMovieDetails = async (title: any) => {
   }
 };
 
-
 export const getMovieByGenre = async (genre: any) => {
   try {
     const docRef = collection(db, "movies");
-   // Create a query against the collection
-   const q = query(docRef, where("genre", "==", genre.toString()));    
-   const movies = []
-   const querySnapshot = await getDocs(q);
-   querySnapshot.forEach((doc) => {
-     movies.push(doc.data())
-     //console.log(doc.id, " => ", doc.data());
+    // Create a query against the collection
+    const q = query(docRef, where("genre", "==", genre.toString()));
+    const movies = [];
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      movies.push(doc.data());
+      //console.log(doc.id, " => ", doc.data());
     });
     return movies;
   } catch (error) {
     console.error(error);
   }
 };
-

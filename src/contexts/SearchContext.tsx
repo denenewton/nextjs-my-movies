@@ -7,17 +7,12 @@ interface Props {
 }
 
 
-const SearchContext = createContext({
-  movies: [
-    { title: "", genre: "", director: "", description: "", year: "", url: "" },
-  ],
-  searchText: "",
-  setSearchText: (_arg: string) => {},
-});
+const SearchContext = createContext(null);
 
 export const SearchProvider = ({ children }: Props) => {
   const [searchText, setSearchText] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [imageURL, setImageURL] = useState('')
 
   useEffect(() => {
     (async () => {
@@ -30,6 +25,8 @@ export const SearchProvider = ({ children }: Props) => {
     movies,
     searchText,
     setSearchText,
+    imageURL,
+    setImageURL
   };
   return (
     <SearchContext.Provider value={value}>{children}</SearchContext.Provider>

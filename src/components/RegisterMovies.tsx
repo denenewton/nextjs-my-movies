@@ -15,14 +15,13 @@ export interface Movie {
   url: string;
 }
 
-
 const RegisterMovies = () => {
   const { register, handleSubmit, formState } = useForm<Movie>();
   const [progressImg, setProgressImg] = useState(0);
   const {imageURL, setImageURL} = useContext(SearchContext)
   const { errors } = formState;
 
-  const onSubmit = (data: FieldValues | any) => {
+  const onSubmit = (data: FieldValues ) => {
     if (data) upLoadImage(data,setImageURL, setProgressImg);
     console.log(data);
     setProgressImg(0);

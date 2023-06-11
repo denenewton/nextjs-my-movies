@@ -1,17 +1,19 @@
 import Head from "next/head";
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import { Button, Container, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import Navigation from "./Navigation";
 import { useRouter } from "next/router";
+import SearchContext from "../contexts/SearchContext";
 
 interface Props {
   children: ReactNode;
 }
 
 export const siteTitle = "Denenewton Movies";
-const genres = ['Science fiction','Adventure','Drama' ,'Romence' , 'Action', 'Thriller','Comedy', 'Fantasy']
+const genres = ['Science fiction','Adventure','Drama' ,'Romance' , 'Action', 'Thriller','Comedy', 'Fantasy', 'All Genre']
 
 export default function Layout({ children }: Props) {
+  const { setselectGenreText,selectGenreText } = useContext(SearchContext);
   const { pathname } = useRouter();
   return (
     <Container maxW="100%" px={1}>
@@ -53,11 +55,10 @@ export default function Layout({ children }: Props) {
               <Button
               whiteSpace="normal"
               textAlign="left"
-              //fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
-              //onClick={() => onSelectGenre(genre)}
+              fontWeight={genre === selectGenreText ? "bold" : "normal"}
+              onClick={() => setselectGenreText(genre)}
               fontSize="md"
-              variant="link"
-              
+              variant="link"              
             >
               {genre}
             </Button>

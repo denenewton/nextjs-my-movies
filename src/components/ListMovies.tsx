@@ -1,3 +1,7 @@
+import SearchContext from "../contexts/SearchContext";
+import { DocumentData } from "firebase/firestore";
+import { useContext } from "react";
+import Link from "next/link";
 import {
   Card,
   CardBody,
@@ -5,21 +9,18 @@ import {
   Image,
   SimpleGrid,
   Text,
-} from '@chakra-ui/react';
-import { DocumentData } from 'firebase/firestore';
-
-import { useContext } from 'react';
-import SearchContext from '../contexts/SearchContext';
-import Link from 'next/link';
+} from "@chakra-ui/react";
 
 const ListMovies = () => {
-  const { movies, searchText } = useContext(SearchContext);
+  const { movFilter, movies, searchText, selectGenreText } = useContext(SearchContext);
 
-  const _movies = searchText
-    ? movies.filter((m) =>
-        m.title.toLowerCase().includes(searchText.toLowerCase()),
-      )
-    : movies;
+  const mov =
+    searchText || selectGenreText
+      ? movFilter?.filter((m: { title: string; }) =>
+          m.title.toLowerCase().includes(searchText?.toLowerCase())
+        )
+      : movies;
+
 
   return (
     <div>
@@ -28,15 +29,15 @@ const ListMovies = () => {
         padding="0"
         spacing={4}
       >
-        {_movies.map((m: DocumentData) => (
+        {mov?.map((m: DocumentData) => (
           <Card key={m.title} overflow="hidden">
             <Link
               href={{
-                pathname: '/details/[title]',
-                query: { title: m.title.toLowerCase()},
+                pathname: "/details/[title]",
+                query: { title: m.title.toLowerCase() },
               }}
             >
-              <Image src={m.url} alt={m.title}/>
+              <Image src={m.url} alt={m.title} />
             </Link>
             <CardBody>
               <Heading fontSize={25}>{m.title}</Heading>

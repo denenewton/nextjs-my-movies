@@ -5,14 +5,14 @@ import { useContext } from "react";
 import SearchContext from "../contexts/SearchContext";
 
 const SearchInput = () => {
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef(null);
   const { setSearchText } = useContext(SearchContext);
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (ref.current) setSearchText(ref.current.value);
+       if (ref.current) setSearchText(ref.current.value);
       }}
     >
       <InputGroup>

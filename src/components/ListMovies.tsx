@@ -37,7 +37,7 @@ const ListMovies = () => {
                 query: { title: m.title.toLowerCase() },
               }}
             >
-              <Image src={m.url} alt={m.title} />
+              <Image src={m.urlImage} alt={m.title} />
             </Link>
             <CardBody>
               <Heading fontSize={25}>{m.title}</Heading>

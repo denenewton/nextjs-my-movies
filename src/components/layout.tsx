@@ -10,10 +10,10 @@ interface Props {
 }
 
 export const siteTitle = "Denenewton Movies";
-const genres = ['Science fiction','Adventure','Drama' ,'Romance' , 'Action', 'Thriller','Comedy', 'Fantasy', 'All Genre']
+const genres = ['Science fiction', 'Adventure', 'Drama', 'Romance', 'Action', 'Thriller', 'Comedy', 'Fantasy', 'All Genre']
 
 export default function Layout({ children }: Props) {
-  const { setselectGenreText,selectGenreText } = useContext(SearchContext);
+  const { setselectGenreText, selectGenreText } = useContext(SearchContext);
   const { pathname } = useRouter();
   return (
     <Container maxW="100%" px={1}>
@@ -36,11 +36,11 @@ export default function Layout({ children }: Props) {
       <Grid
         templateAreas={{
           base: `"nav" "main"`,
-          lg:  `${pathname === '/' ? `"nav nav" "aside main"`: `"nav nav" " main"` }`,
+          lg: `${pathname === '/' ? `"nav nav" "aside main"` : `"nav nav" " main"`}`,
         }}
         templateColumns={{
           base: "1fr",
-          lg: `${pathname === '/' ? '200px 1fr': '1fr' }`,
+          lg: `${pathname === '/' ? '200px 1fr' : '1fr'}`,
         }}
         marginEnd={4}
         marginStart={4}
@@ -48,26 +48,26 @@ export default function Layout({ children }: Props) {
         <GridItem area="nav">
           <Navigation />
         </GridItem>
-       {pathname === '/' && ( <Show above="lg">
-          <GridItem area="aside"  py='1.5rem'>
+        {pathname === '/' && (<Show above="lg">
+          <GridItem area="aside" py='1.5rem'>
             <aside>{genres.map(genre => (
               <HStack key={genre} marginBottom={4}>
-              <Button
-              whiteSpace="normal"
-              textAlign="left"
-              fontWeight={genre === selectGenreText ? "bold" : "normal"}
-              onClick={() => setselectGenreText(genre)}
-              fontSize="md"
-              variant="link"              
-            >
-              {genre}
-            </Button>
-            </HStack>
+                <Button
+                  whiteSpace="normal"
+                  textAlign="left"
+                  fontWeight={genre === selectGenreText ? "bold" : "normal"}
+                  onClick={() => setselectGenreText(genre)}
+                  fontSize="md"
+                  variant="link"
+                >
+                  {genre}
+                </Button>
+              </HStack>
             ))}</aside>
           </GridItem>
-        </Show>) }
+        </Show>)}
         <GridItem area="main" paddingY={5}>
-          <main>{children}</main>
+          {children}
         </GridItem>
       </Grid>
       <footer>

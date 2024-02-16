@@ -1,0 +1,1 @@
+//const genres = ['Science fiction', 'Adventure', 'Drama', 'Romance', 'Action', 'Thriller', 'Comedy', 'Fantasy', 'All Genre']

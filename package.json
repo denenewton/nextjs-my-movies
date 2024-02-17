@@ -1,5 +1,5 @@
 {
-  "name": "moviesofalltimes",
+  "name": "movie-denenewton",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,25 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.19",
-    "@chakra-ui/react": "^2.6.1",
-    "@emotion/react": "^11.11.0",
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/next-js": "^2.2.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "axios": "^1.4.0",
-    "firebase": "^9.22.0",
-    "firebase-admin": "^11.8.0",
-    "framer-motion": "^10.12.14",
-    "next": "13.4.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-hook-form": "^7.43.9",
-    "styled-components": "^5.2.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.2.3",
-    "@types/react": "18.2.6",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
-    "prettier": "^2.2.1"
+    "firebase": "^10.8.0",
+    "framer-motion": "^11.0.5",
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18"
   }
 }

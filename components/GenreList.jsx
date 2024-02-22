@@ -15,8 +15,7 @@ const GenreList = () => {
     "Fantasy",
     "All Genres",
   ];
-  const { searchText, setGenreMovies, searchGenre, setSearchGenre } =
-    useSearchContext();
+  const { searchGenre, setSearchGenre } = useSearchContext();
 
   return (
     <>
@@ -32,9 +31,8 @@ const GenreList = () => {
                 onClick={() => setSearchGenre(genre)}
                 fontSize="lg"
                 variant="link"
-                //color={color}
               >
-                {genre !== "Science_Fiction" ? genre : "Science fiction"}
+                {genre !== "Science_fiction" ? genre : "Science Fiction"}
               </Button>
             </HStack>
           </ListItem>

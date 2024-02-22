@@ -2,14 +2,7 @@
 
 import useSearchContext from "../hook/useSearchContext";
 import { getNumPages, getPaginatedData } from "../utils/firebase.utils";
-import {
-  Heading,
-  SimpleGrid,
-  Box,
-  Button,
-  Spacer,
-  Flex,
-} from "@chakra-ui/react";
+import { Heading, SimpleGrid, Box, Spacer, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CardMovies from "../components/CardMovies";
 import GridLayout from "../components/GridLayout";
@@ -23,15 +16,14 @@ const page = () => {
   const [data, setData] = useState([]);
   const [firstDoc, setFirstDoc] = useState(undefined);
   const [lastDoc, setLastDoc] = useState(undefined);
-  const [pages, setPages] = useState(null); //numere do paginas
+  const [pages, setPages] = useState(0); //numere do paginas
   const [page, setPage] = useState(1);
   const [direction, setDirection] = useState(undefined); // <'prev' | 'next' | undefined>
   const [resultMovies, setResultMovies] = useState([]);
 
   function filterData(data, title, genre, year) {
-    const _data = data;
-
-    return _data.filter(
+    // const _data = data;
+    return data.filter(
       (m) =>
         new RegExp(title, "i").test(m.title) &&
         new RegExp(genre, "i").test(m.genre) &&
@@ -39,19 +31,21 @@ const page = () => {
     );
   }
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     let _mov = [];
     if (searchGenre === "All Genres") {
       setSearchGenre("");
       setSearchText("");
-      _mov = data;
+      _mov = _mov.concat(data);
     }
     _mov =
       searchText || searchGenre
         ? filterData(data, searchText, searchGenre, "")
         : data;
     setResultMovies(_mov);
-  }, [data, searchText, searchGenre]);
+  }, [searchText, searchGenre]);
 
   // Fetch number of pages
   useEffect(() => {
@@ -115,13 +109,15 @@ const page = () => {
           spacing={4}
         >
           {resultMovies?.map((movi) => (
-            <CardMovies key={movi.title} movie={movi} />
+            <>
+              <CardMovies key={movi.title} movie={movi} />
+            </>
           ))}
         </SimpleGrid>
       </Box>
       <p
         id="sentinela"
-        className={page > pages || searchGenre ? "invisible" : ""}
+        className={page > pages || searchGenre || searchText ? "invisible" : ""}
         style={{ color: "transparent" }}
       >
         text

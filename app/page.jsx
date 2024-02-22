@@ -82,6 +82,7 @@ const page = () => {
     ).then((data) => {
       const _data = resultMovies.concat(data.result);
       setData(_data);
+      setResultMovies(_data);
       setFirstDoc(data.firstDoc);
       setLastDoc(data.lastDoc);
     });
@@ -120,7 +121,7 @@ const page = () => {
       </Box>
       <p
         id="sentinela"
-        className={page > pages && "invisible"}
+        className={page > pages || searchGenre ? "invisible" : ""}
         style={{ color: "transparent" }}
       >
         text

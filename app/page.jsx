@@ -56,6 +56,15 @@ const page = () => {
   // Fetch number of pages
   useEffect(() => {
     getNumPages("movies", numPerPage).then((pages) => setPages(pages));
+    ///////////////////////////////////////////////////////////////////
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        setDirection("next");
+        setPage((prev) => prev + 1);
+      }
+    });
+    intersectionObserver.observe(document.querySelector("#sentinela"));
+    return () => intersectionObserver.disconnect();
   }, []);
 
   // Fetch paginated data based on page

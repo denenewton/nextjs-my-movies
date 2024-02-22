@@ -108,10 +108,8 @@ const page = () => {
           padding="0"
           spacing={4}
         >
-          {resultMovies?.map((movi) => (
-            <>
-              <CardMovies key={movi.title} movie={movi} />
-            </>
+          {resultMovies?.map((movi, index) => (
+            <CardMovies key={movi.title + index} movie={movi} />
           ))}
         </SimpleGrid>
       </Box>

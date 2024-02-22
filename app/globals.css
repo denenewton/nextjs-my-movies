@@ -1,6 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 form {
   width: 100%;
   margin: 0 5px ;
 }
+
+.invisible{
+  display: none;
+}
+
+.section-main{
+  @apply flex w-full bg-white min-h-screen flex-col items-center
+ }
+ 
+ .section-main.h1 {
+   font-family: Montserrat, sans-serif;
+ }
+ .head_text {
+   @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+ }
+ .blue_gradient {
+   @apply bg-gradient-to-r from-indigo-500 via-purple-500  via-pink-500 to-violet-900 bg-clip-text text-transparent;
+ }
+ 
+ .dark_gradient{
+   @apply bg-gradient-to-r from-black via-gray-500  to-violet-500 bg-clip-text text-transparent;
+ }
+ 
+ .glassmorphism {
+   @apply rounded-xl border border-gray-200 bg-gray-700/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+ }
+ 
+ /* Form Component */
+ .form_textarea {
+   @apply w-full flex rounded-lg h-[200px]  mt-2 p-3 text-sm text-gray-500 bg-white outline-0
+ }
+ 
+ .form_input {
+   @apply w-full flex rounded-lg mt-2 p-3 text-sm bg-white text-gray-500 outline-0;
+ }

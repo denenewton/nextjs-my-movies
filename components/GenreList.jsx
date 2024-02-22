@@ -24,9 +24,10 @@ const GenreList = () => {
       </Heading>
       <List>
         {genres.map((genre, index) => (
-          <ListItem key={index} paddingY="5px">
+          <ListItem key={genre + index} paddingY="5px">
             <HStack>
               <Button
+                key={genre + index}
                 fontWeight={genre === searchGenre ? "bold" : "normal"}
                 onClick={() => setSearchGenre(genre)}
                 fontSize="lg"

@@ -1,5 +1,9 @@
-'use client'
-import { signInWithGooglePopup, signOutUser, createUserDocumentFromAuth } from "../utils/firebase.utils";
+"use client";
+import {
+  signInWithGooglePopup,
+  signOutUser,
+  createUserDocumentFromAuth,
+} from "../utils/firebase.utils";
 import Link from "next/link";
 import {
   Box,
@@ -22,46 +26,38 @@ import SwitchColorMode from "./SwitchColorMode";
 import SearchInput from "./SearchInput";
 import { usePathname } from "next/navigation";
 
-import  useAuth  from "../hook/useAuth";
+import useAuth from "../hook/useAuth";
 
 const Navigation = () => {
-  const { currentUser } = useAuth()
-  const pathname = usePathname()
-  
+  const { currentUser } = useAuth();
+  const pathname = usePathname();
 
   const signInWithGoogle = async () => {
     try {
       const { user } = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(user)
-      alert('Sign in was successfully done!');
-
+      await createUserDocumentFromAuth(user);
+      alert("Sign in was successfully done!");
     } catch (error) {
-      switch (error.code) {
-        case "auth/popup-closed-by-user":
-          alert("Don't go! Sign in to your account!");
-          break;
-        default:
-          console.log(error);
-          break;
-      }
+      console.log(error);
     }
   };
-
 
   return (
     <Box>
       <HStack
         justifyContent="space-between"
-        alignItems='center'
-        alignContent='center'
+        alignItems="center"
+        alignContent="center"
         height={20}
         spacing={3}
-        bg='inherit'
+        bg="inherit"
       >
-        <Link href="/" >
+        <Link href="/">
           <Box boxSize="60px" marginStart={7} mt={3}>
-            <Image src={'/assets/crown.svg'} width='70%' />
-            <Text fontSize={'12px'} pl={'2px'} >movies</Text>
+            <Image src={"/assets/crown.svg"} width="70%" />
+            <Text fontSize={"12px"} pl={"2px"}>
+              movies
+            </Text>
           </Box>
         </Link>
 
@@ -84,7 +80,7 @@ const Navigation = () => {
               pr={7}
             >
               <Avatar
-                size={'sm'}
+                size={"sm"}
                 src={currentUser ? currentUser.photoURL : ""}
               />
             </MenuButton>
@@ -97,8 +93,9 @@ const Navigation = () => {
               )}
               {!currentUser ? (
                 <MenuItem onClick={signInWithGoogle}>Google Sign In</MenuItem>
-              ) : (<MenuItem onClick={signOutUser }>Sign Out</MenuItem>)
-              }
+              ) : (
+                <MenuItem onClick={signOutUser}>Sign Out</MenuItem>
+              )}
             </MenuList>
           </Menu>
         </HStack>

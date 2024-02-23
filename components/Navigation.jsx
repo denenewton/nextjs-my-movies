@@ -18,6 +18,7 @@ import {
   MenuDivider,
   useDisclosure,
   Image,
+  useColorModeValue,
   Text,
 } from "@chakra-ui/react";
 
@@ -31,6 +32,7 @@ import useAuth from "../hook/useAuth";
 const Navigation = () => {
   const { currentUser } = useAuth();
   const pathname = usePathname();
+  const authUser = currentUser?.uid === process.env.NEXT_PUBLIC_UID_GOOGLE;
 
   const signInWithGoogle = async () => {
     try {
@@ -43,14 +45,19 @@ const Navigation = () => {
   };
 
   return (
-    <Box>
+    <Box
+      bgGradient={useColorModeValue(
+        "linear(to-l, #fff , #fff)",
+        "linear(to-l, gray.900, gray.800)"
+      )}
+      boxShadow="0px .2px .5px 0px #ccc"
+    >
       <HStack
         justifyContent="space-between"
         alignItems="center"
         alignContent="center"
-        height={20}
+        height="4.5rem"
         spacing={3}
-        bg="inherit"
       >
         <Link href="/">
           <Box boxSize="60px" marginStart={7} mt={3}>
@@ -64,7 +71,7 @@ const Navigation = () => {
         {pathname == "/" && <SearchInput />}
 
         <HStack>
-          {pathname == "/" && currentUser && (
+          {pathname == "/" && authUser && (
             <Link href="/register">
               <Text>Register</Text>
             </Link>
